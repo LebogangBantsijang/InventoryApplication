@@ -45,6 +45,7 @@
             android:visibility="gone">
 
             <ImageButton
+                android:id="@+id/closeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tint="@color/white"
@@ -53,6 +54,7 @@
                 app:srcCompat="@drawable/ic_round_close_24" />
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEditText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -66,48 +68,9 @@
 
     </FrameLayout>
 
-    <View
-        android:layout_width="96dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:orientation="horizontal"
-        >
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:spinnerMode="dialog" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_gravity="center_vertical"
-            android:padding="12dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            app:srcCompat="@drawable/ic_round_keyboard_arrow_down_24" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        tools:listitem="@layout/item_layout_user" />
+        android:scrollbars="vertical" />
 </LinearLayout>

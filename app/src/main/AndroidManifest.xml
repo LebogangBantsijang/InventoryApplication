@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Inventory">
-        <activity android:name=".Views.ManageUsersActivity"></activity>
+        <activity android:name=".Views.ManageUsersActivity">
+
+        </activity>
         <activity android:name=".Views.LoginActivity" />
         <activity android:name=".Views.CreateAccountActivity">
             <intent-filter>

@@ -12,8 +12,13 @@
  * under the License.
  */
 
-package com.lebogang.inventory.Views.RecyclerAdapters
+package com.lebogang.inventory.Views.Interfaces
 
-interface ItemClickListeners {
-    fun onShowContextMenu(show:Boolean)
+import com.lebogang.inventory.LocalRoom.Models.User
+
+interface UserClickInterface {
+
+    fun onClick(user:User)
+
+    fun onDeleteClick(user:User)
 }

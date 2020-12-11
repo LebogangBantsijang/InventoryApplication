@@ -19,7 +19,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Products")
-data class ProductModel(
+data class Product(
     @PrimaryKey(autoGenerate = true)
     val productID:Int,
     val customProductId:String,

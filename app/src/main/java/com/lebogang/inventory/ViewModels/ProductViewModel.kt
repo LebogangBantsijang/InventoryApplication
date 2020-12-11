@@ -16,42 +16,42 @@ package com.lebogang.inventory.ViewModels
 
 import androidx.lifecycle.*
 import com.lebogang.inventory.LocalRoom.ApplicationRepository
-import com.lebogang.inventory.LocalRoom.Models.ProductModel
+import com.lebogang.inventory.LocalRoom.Models.Product
 import kotlinx.coroutines.launch
 
 class ProductViewModel(private val repository: ApplicationRepository):ViewModel() {
 
-    fun getProductList() : LiveData<List<ProductModel>> =
+    fun getProductList() : LiveData<List<Product>> =
         repository.getProductList().asLiveData()
 
-    fun getProductsByName(name:String):LiveData<List<ProductModel>> =
+    fun getProductsByName(name:String):LiveData<List<Product>> =
         repository.getProductsByName(name).asLiveData()
 
-    fun getProductsByCustomID(customProductId:String):LiveData<List<ProductModel>> =
+    fun getProductsByCustomID(customProductId:String):LiveData<List<Product>> =
         repository.getProductsByCustomID(customProductId).asLiveData()
 
-    fun getProductsByPrice(price:Double):LiveData<List<ProductModel>> =
+    fun getProductsByPrice(price:Double):LiveData<List<Product>> =
         repository.getProductsByPrice(price).asLiveData()
 
-    fun getProductsInPriceRange(minPrice:Double, maxPrice:Double):LiveData<List<ProductModel>> =
+    fun getProductsInPriceRange(minPrice:Double, maxPrice:Double):LiveData<List<Product>> =
         repository.getProductsInPriceRange(minPrice, maxPrice).asLiveData()
 
-    fun getProductsByType(type:String):LiveData<List<ProductModel>> =
+    fun getProductsByType(type:String):LiveData<List<Product>> =
         repository.getProductsByType(type).asLiveData()
 
-    fun getProductInLocation(location:String):LiveData<List<ProductModel>> =
+    fun getProductInLocation(location:String):LiveData<List<Product>> =
         repository.getProductInLocation(location).asLiveData()
 
 
-    fun insertProduct(product: ProductModel) = viewModelScope.launch {
+    fun insertProduct(product: Product) = viewModelScope.launch {
         repository.insertProduct(product)
     }
 
-    fun updateProduct(product: ProductModel) = viewModelScope.launch {
+    fun updateProduct(product: Product) = viewModelScope.launch {
         repository.updateProduct(product)
     }
 
-    fun deleteProduct(product: ProductModel) = viewModelScope.launch {
+    fun deleteProduct(product: Product) = viewModelScope.launch {
         repository.deleteProduct(product)
     }
 

@@ -14,17 +14,59 @@
 
 package com.lebogang.inventory.Views
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import com.lebogang.inventory.InventoryApplication
+import com.lebogang.inventory.LocalRoom.Models.User
+import com.lebogang.inventory.Utils.EditTextUtil
+import com.lebogang.inventory.Utils.UserThreadCallbacks
+import com.lebogang.inventory.ViewModels.UserViewModel
 import com.lebogang.inventory.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private val binding:ActivityLoginBinding by lazy{
         ActivityLoginBinding.inflate(layoutInflater)
     }
+    private val viewModel:UserViewModel by viewModels{
+        UserViewModel.UserViewModelFactory((application as InventoryApplication).localRepository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initLoginViews()
+        viewModel.callback = getCallback()
     }
+
+    private fun initLoginViews(){
+        binding.loginButton.setOnClickListener {
+            if (!EditTextUtil.isEditableNull(binding.emailEditText.text, binding.passwordEditText.text)){
+                val email = binding.emailEditText.text.toString()
+                val password = binding.passwordEditText.text.toString()
+                viewModel.checkIfUserExists(email, password)
+            }else
+                binding.errorTextView.text = EditTextUtil.getErrorMessage(EditTextUtil.ErrorTypes.NULL_VALUES)
+        }
+    }
+
+    private fun gotoNextActivity(){
+        startActivity(Intent(this, ManageUsersActivity::class.java))
+    }
+
+    private fun getCallback():UserThreadCallbacks{
+        return object :UserThreadCallbacks(){
+            override fun onUserExists(result: Boolean, name: String, surname: String, email: String, password: String) {
+            }
+            override fun onUserExists(result: Boolean, email: String, password: String) {
+                if (result){
+                    gotoNextActivity()
+                }else
+                    binding.errorTextView.text = EditTextUtil.getErrorMessage(EditTextUtil.ErrorTypes.NO_SUCH_USER)
+            }
+
+        }
+    }
+
 }

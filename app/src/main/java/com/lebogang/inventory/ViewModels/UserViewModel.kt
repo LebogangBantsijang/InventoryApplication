@@ -14,40 +14,61 @@
 
 package com.lebogang.inventory.ViewModels
 
+import android.os.Handler
 import androidx.lifecycle.*
 import com.lebogang.inventory.LocalRoom.ApplicationRepository
-import com.lebogang.inventory.LocalRoom.Models.UserModel
+import com.lebogang.inventory.LocalRoom.Models.User
+import com.lebogang.inventory.Utils.UserThreadCallbacks
+import kotlinx.coroutines.android.awaitFrame
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val repository: ApplicationRepository):ViewModel() {
 
-    fun getUserList():LiveData<List<UserModel>> =
+    var callback:UserThreadCallbacks? = null
+
+    fun getUserList():LiveData<List<User>> =
         repository.getUserList().asLiveData()
 
-    fun getUserByName(name:String):LiveData<List<UserModel>> =
+    fun getUserByName(name:String):LiveData<List<User>> =
         repository.getUserByName(name).asLiveData()
 
-    fun getUserBySurname(surname:String):LiveData<List<UserModel>> =
+    fun getUserBySurname(surname:String):LiveData<List<User>> =
         repository.getUserBySurname(surname).asLiveData()
 
-    fun getUserByNameAndSurname(name: String, surname: String):LiveData<List<UserModel>> =
+    fun getUserByNameAndSurname(name: String, surname: String):LiveData<List<User>> =
         repository.getUserByNameAndSurname(name, surname).asLiveData()
 
-    fun getUserByEmail(email: String):LiveData<List<UserModel>> =
+    fun getUserByEmail(email: String):LiveData<List<User>> =
         repository.getUserByEmail(email).asLiveData()
 
-    fun getUserTypes(isAdmin:Boolean):LiveData<List<UserModel>> =
+    fun getUserTypes(isAdmin:Boolean):LiveData<List<User>> =
         repository.getUserTypes(isAdmin).asLiveData()
 
-    fun insertUser(user:UserModel) = viewModelScope.launch {
+    fun checkIfUserExists(email: String, password:String) {
+        viewModelScope.launch {
+            val result = repository.checkIfUserExists(email, password)
+            callback?.onUserExists(result, email, password)
+        }
+    }
+
+    fun checkIfUserExists(name:String, surname: String, email:String, password:String){
+        viewModelScope.launch {
+            val result = repository.checkIfUserExists(name, surname, email, password)
+            callback?.onUserExists(result, name, surname, email, password)
+        }
+    }
+
+    fun insertUser(user:User) = viewModelScope.launch {
         repository.insertUser(user)
     }
 
-    fun updateUser(user: UserModel) = viewModelScope.launch {
+    fun updateUser(user: User) = viewModelScope.launch {
         repository.updateUser(user)
     }
 
-    fun deleteUser(user:UserModel) = viewModelScope.launch {
+    fun deleteUser(user:User) = viewModelScope.launch {
         repository.deleteUser(user)
     }
 

@@ -20,9 +20,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.lebogang.inventory.LocalRoom.DAOs.ProductDao
 import com.lebogang.inventory.LocalRoom.DAOs.UserDao
-import com.lebogang.inventory.LocalRoom.Models.ProductModel
+import com.lebogang.inventory.LocalRoom.Models.Product
+import com.lebogang.inventory.LocalRoom.Models.User
 
-@Database(entities = [ProductModel::class], version = 1)
+@Database(entities = [Product::class, User::class], version = 1, exportSchema = false)
 abstract class ApplicationDatabase:RoomDatabase() {
 
     abstract fun productDao():ProductDao
@@ -35,7 +36,7 @@ abstract class ApplicationDatabase:RoomDatabase() {
         fun getDatabase(context: Context):ApplicationDatabase{
             return DATABASE_INSTANCE?: synchronized(this){
                 val db = Room.databaseBuilder(context.applicationContext,
-                    ApplicationDatabase::class.java, "LocalDatabase")
+                    ApplicationDatabase::class.java, "InventoryDatabase")
                     .build()
                 DATABASE_INSTANCE = db
                 db

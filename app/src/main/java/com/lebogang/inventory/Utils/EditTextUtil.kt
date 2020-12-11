@@ -14,21 +14,38 @@
 
 package com.lebogang.inventory.Utils
 
+import android.text.Editable
+
 class EditTextUtil {
 
     companion object{
         fun getErrorMessage(errorTypes: ErrorTypes):String{
-            when(errorTypes){
+            return when(errorTypes){
                 ErrorTypes.NULL_VALUES -> "Details not complete"
                 ErrorTypes.INVALID_PASSWORD -> "Incorrect Password"
                 ErrorTypes.UNCONFIRMED_PASSWORD -> "Passwords do not match"
-                ErrorTypes.UNKNOWN -> "Fatal Error"
+                ErrorTypes.INVALID_VALUES -> "Invalid Details"
+                ErrorTypes.USER_EXISTS -> "User already Exists"
+                ErrorTypes.NO_SUCH_USER -> "It appears that your info does not match our info"
             }
-            return ""
+        }
+
+        fun isEditableNull(vararg editable: Editable?):Boolean{
+            editable.iterator().forEach {
+                if (it.isNullOrEmpty()||it.isNullOrBlank())
+                    return true
+            }
+            return false
+        }
+
+        fun doPasswordMatch(password:Editable?, confirmPassword:Editable?):Boolean{
+            if (password.toString() == confirmPassword.toString())
+                return true
+            return false
         }
     }
 
     enum class ErrorTypes{
-        NULL_VALUES, INVALID_PASSWORD,UNCONFIRMED_PASSWORD, UNKNOWN
+        NULL_VALUES, INVALID_PASSWORD,UNCONFIRMED_PASSWORD, INVALID_VALUES, USER_EXISTS, NO_SUCH_USER
     }
 }

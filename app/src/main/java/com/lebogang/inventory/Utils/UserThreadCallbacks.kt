@@ -12,20 +12,10 @@
  * under the License.
  */
 
-package com.lebogang.inventory.LocalRoom.Models
+package com.lebogang.inventory.Utils
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+abstract class UserThreadCallbacks {
+    abstract fun onUserExists(result:Boolean, name:String, surname: String, email:String, password:String)
 
-@Entity(tableName = "Users")
-data class UserModel(
-    @PrimaryKey(autoGenerate = true)
-    val userID:Int,
-    val customUserId:Int,
-    val name:String,
-    val surname:String,
-    val email:String,
-    val password:String,
-    val isAdmin:Boolean
-)
+    abstract fun onUserExists(result:Boolean, email:String, password:String)
+}

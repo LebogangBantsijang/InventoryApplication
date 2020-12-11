@@ -18,29 +18,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lebogang.inventory.Views.RecyclerAdapters.ItemAdapter
-import com.lebogang.inventory.Views.RecyclerAdapters.ItemClickListeners
 import com.lebogang.inventory.databinding.ActivityManageInventoryBinding
 
-class ManageInventoryActivity : AppCompatActivity(), ItemClickListeners{
+class ManageInventoryActivity : AppCompatActivity(){
     private val binding:ActivityManageInventoryBinding by lazy{
         ActivityManageInventoryBinding.inflate(layoutInflater)
     }
-    private val adapter = ItemAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        initRecyclerView()
-        initAddButton()
-        initCustomContextMenu()
     }
 
 
     private fun initRecyclerView(){
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = adapter
     }
 
     private fun initAddButton(){
@@ -52,21 +45,10 @@ class ManageInventoryActivity : AppCompatActivity(), ItemClickListeners{
     private fun initCustomContextMenu(){
         binding.closeButton.setOnClickListener {
             binding.contextBar.visibility = View.GONE
-            adapter.hideCheckBoxes()
         }
         binding.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
             //select all
         }
     }
 
-    override fun onShowContextMenu(show:Boolean) {
-        if (show){
-            binding.contextBar.visibility = View.VISIBLE
-            binding.toolbar.isClickable = false
-        }
-        else{
-            binding.contextBar.visibility = View.GONE
-            binding.toolbar.isClickable = true
-        }
-    }
 }

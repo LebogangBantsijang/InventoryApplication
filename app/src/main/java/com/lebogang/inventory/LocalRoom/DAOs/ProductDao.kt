@@ -15,40 +15,40 @@
 package com.lebogang.inventory.LocalRoom.DAOs
 
 import androidx.room.*
-import com.lebogang.inventory.LocalRoom.Models.ProductModel
+import com.lebogang.inventory.LocalRoom.Models.Product
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao{
     @Query("SELECT * FROM products")
-    fun getProductList(): Flow<List<ProductModel>>
+    fun getProductList(): Flow<List<Product>>
 
     @Query("SELECT * FROM products WHERE productName = :productName")
-    fun getProductsByName(productName:String):Flow<List<ProductModel>>
+    fun getProductsByName(productName:String):Flow<List<Product>>
 
     @Query("SELECT * FROM products WHERE customProductId = :customProductId")
-    fun getProductsByCustomID(customProductId:String):Flow<List<ProductModel>>
+    fun getProductsByCustomID(customProductId:String):Flow<List<Product>>
 
     @Query("SELECT * FROM products WHERE productPrice = :price")
-    fun getProductsByPrice(price:Double):Flow<List<ProductModel>>
+    fun getProductsByPrice(price:Double):Flow<List<Product>>
 
     @Query("SELECT * FROM products WHERE productPrice >= :minPrice AND productPrice <= :maxPrice")
-    fun getProductsInPriceRange(minPrice:Double, maxPrice:Double):Flow<List<ProductModel>>
+    fun getProductsInPriceRange(minPrice:Double, maxPrice:Double):Flow<List<Product>>
 
     @Query("SELECT * FROM products WHERE productType = :type")
-    fun getProductsByType(type:String):Flow<List<ProductModel>>
+    fun getProductsByType(type:String):Flow<List<Product>>
 
     @Query("SELECT * FROM products WHERE availableAtLocation = :location")
-    fun getProductInLocation(location:String):Flow<List<ProductModel>>
+    fun getProductInLocation(location:String):Flow<List<Product>>
 
-    @Insert
-    suspend fun insertProduct(product:ProductModel)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertProduct(product:Product)
 
     @Update
-    suspend fun updateProduct(product: ProductModel)
+    suspend fun updateProduct(product: Product)
 
     @Delete
-    suspend fun deleteProduct(product: ProductModel)
+    suspend fun deleteProduct(product: Product)
 
     @Query("DELETE FROM products")
     suspend fun deleteAllProducts()
