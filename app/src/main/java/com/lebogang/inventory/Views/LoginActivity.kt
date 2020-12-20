@@ -14,12 +14,14 @@
 
 package com.lebogang.inventory.Views
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.lebogang.inventory.InventoryApplication
 import com.lebogang.inventory.LocalRoom.Models.User
+import com.lebogang.inventory.MainActivity
 import com.lebogang.inventory.Utils.EditTextUtil
 import com.lebogang.inventory.Utils.UserThreadCallbacks
 import com.lebogang.inventory.ViewModels.UserViewModel
@@ -40,6 +42,13 @@ class LoginActivity : AppCompatActivity() {
         viewModel.callback = getCallback()
     }
 
+    private fun initToolbar(){
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener{
+            onBackPressed()
+        }
+    }
+
     private fun initLoginViews(){
         binding.loginButton.setOnClickListener {
             if (!EditTextUtil.isEditableNull(binding.emailEditText.text, binding.passwordEditText.text)){
@@ -52,7 +61,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun gotoNextActivity(){
-        startActivity(Intent(this, ManageUsersActivity::class.java))
+        getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+            .putBoolean("user", true)
+            .apply()
+        startActivity(Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_TASK_ON_HOME
+        })
     }
 
     private fun getCallback():UserThreadCallbacks{

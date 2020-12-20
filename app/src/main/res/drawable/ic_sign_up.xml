@@ -1,0 +1,38 @@
+<!--
+  ~ Copyright (c) 2020. - Lebogang Bantsijang
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+  ~ compliance License. You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the
+  ~ License on an "IS BASIS", WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+  ~ express or implied. See the for specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+  <path
+      android:pathData="M11.426,43c-0.643,0 -2.595,-0.1 -3.772,-1.23C7.062,41.201 6.75,40.45 6.75,39.598c0,-1.877 1.462,-3.39 2.752,-4.725c0.675,-0.697 1.598,-1.652 1.598,-2.1c0,-0.586 -0.586,-0.897 -1.922,-1.469c-1.626,-0.693 -3.853,-1.645 -3.853,-4.457C5.246,17.713 23.671,5.668 24.455,5.16c0.463,-0.302 1.082,-0.169 1.383,0.295s0.168,1.083 -0.295,1.383C20.456,10.136 7.267,20.157 7.325,26.84c0,1.428 1.002,1.928 2.638,2.626c1.397,0.597 3.137,1.341 3.137,3.308c0,1.256 -1.049,2.342 -2.16,3.49c-1.027,1.063 -2.19,2.266 -2.19,3.334c0,0.313 0.089,0.537 0.29,0.729c0.581,0.558 1.933,0.68 2.496,0.671c0.577,-0.047 1.017,0.406 1.039,0.96c0.022,0.552 -0.408,1.017 -0.959,1.038C11.581,42.998 11.517,43 11.426,43z"
+      android:fillColor="#BCAAA4"/>
+  <path
+      android:pathData="M42.67,17.216l-2.888,-2.887c-0.438,-0.44 -1.153,-0.44 -1.593,0l-1.359,1.359l4.48,4.48l1.358,-1.36C43.109,18.369 43.109,17.657 42.67,17.216"
+      android:fillColor="#E57373"/>
+  <path
+      android:pathData="M39.0515,22.4318L19.9889,41.495L15.5086,37.0149L34.5712,17.9517z"
+      android:fillColor="#FF9800"/>
+  <path
+      android:pathData="M34.5679,17.95L36.8071,15.7089L41.29,20.1879L39.0508,22.429z"
+      android:fillColor="#B0BEC5"/>
+  <path
+      android:pathData="M15.507,37.014L14,43 19.987,41.493z"
+      android:fillColor="#FFC107"/>
+  <path
+      android:pathData="M14.761,39.973L14,43 17.026,42.238z"
+      android:fillColor="#37474F"/>
+</vector>

@@ -13,15 +13,6 @@
   ~ under the License.
   -->
 
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item
-        android:id="@+id/search"
-        android:icon="@drawable/ic_round_search_24"
-        android:title="Search"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/about"
-        android:title="About" />
-</menu>
+<resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+</resources>

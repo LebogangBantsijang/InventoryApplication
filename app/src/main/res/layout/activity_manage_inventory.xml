@@ -26,61 +26,47 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:minHeight="?attr/actionBarSize"
-        app:title="Manage Inventory"
+        android:theme="?attr/actionBarTheme"
         app:menu="@menu/manage_inventory_menu"
         app:navigationIcon="@drawable/ic_round_arrow_back_24"
-        android:theme="?attr/actionBarTheme" />
+        app:title="Inventory" />
 
     <LinearLayout
-        android:id="@+id/contextBar"
+        android:id="@+id/searchContainer"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:orientation="horizontal"
-        android:theme="@style/Theme.MaterialComponents"
         android:background="?colorPrimary"
-        android:visibility="gone"
-        android:focusable="true">
+        android:visibility="gone">
 
         <ImageButton
             android:id="@+id/closeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tint="@color/white"
             android:padding="16dp"
-            android:background="@null"
-            android:src="@drawable/ic_round_close_24" />
+            android:background="?selectableItemBackground"
+            app:srcCompat="@drawable/ic_round_close_24" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchEditText"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="Select Items"
             android:layout_weight="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+            android:inputType="text"
+            android:hint="Search For Item"
+            android:theme="@style/Theme.AppCompat"
+            android:maxLines="1"
+            android:background="@null"/>
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            android:layout_marginEnd="16dp"
-            android:buttonTint="@color/white"
-            android:text="All" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="?actionBarSize"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="24dp"
-        android:background="?android:attr/listDivider" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?actionBarSize"/>
+        android:layout_marginTop="?actionBarSize"
+        tools:listitem="@layout/item_layout_product" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addFloatingActionButton"
