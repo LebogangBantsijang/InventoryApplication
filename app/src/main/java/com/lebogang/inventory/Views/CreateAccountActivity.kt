@@ -14,6 +14,7 @@
 
 package com.lebogang.inventory.Views
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,7 @@ import android.text.Editable
 import androidx.activity.viewModels
 import com.lebogang.inventory.InventoryApplication
 import com.lebogang.inventory.LocalRoom.Models.User
+import com.lebogang.inventory.MainActivity
 import com.lebogang.inventory.Utils.EditTextUtil
 import com.lebogang.inventory.Utils.UserThreadCallbacks
 import com.lebogang.inventory.ViewModels.UserViewModel
@@ -37,8 +39,16 @@ class CreateAccountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initToolbar()
         initViews()
         viewModel.callback = getCallbacks()
+    }
+
+    private fun initToolbar(){
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun createAccountViews(){
@@ -61,8 +71,11 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private fun createUserInLocalDatabase(user: User){
         viewModel.insertUser(user)
-        startActivity(Intent(this, ManageUsersActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+            .putBoolean("user", true)
+            .apply()
+        startActivity(Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_TASK_ON_HOME
         })
     }
 

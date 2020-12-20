@@ -24,10 +24,10 @@ import com.lebogang.inventory.ViewModels.UserViewModel
 import com.lebogang.inventory.databinding.DialogEditAccountBinding
 import java.util.zip.Inflater
 
-class UpdateUserDialog(val context: Context, val viewModel:UserViewModel) {
-    val dialog = MaterialAlertDialogBuilder(context)
-    val inflater = LayoutInflater.from(context)
-    val binding:DialogEditAccountBinding by lazy {
+class UpdateUserDialog(val context: Context, private val viewModel:UserViewModel) {
+    private val dialog = MaterialAlertDialogBuilder(context)
+    private val inflater = LayoutInflater.from(context)!!
+    private val binding:DialogEditAccountBinding by lazy {
         DialogEditAccountBinding.inflate(inflater)
     }
     fun show(user:User){

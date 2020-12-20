@@ -43,10 +43,17 @@ class ManageUsersActivity : AppCompatActivity(), UserClickInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        initToolbar()
         initSearchViews()
         initRecyclerView()
         getData()
+    }
+
+    private fun initToolbar(){
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

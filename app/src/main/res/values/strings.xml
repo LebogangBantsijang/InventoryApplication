@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Inventory</string>
+    <array name="productTypes">
+        <item>Food</item>
+        <item>Drink</item>
+        <item>Sauce</item>
+        <item>Utilities</item>
+        <item>Other</item>
+    </array>
 </resources>

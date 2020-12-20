@@ -41,7 +41,7 @@ interface ProductDao{
     @Query("SELECT * FROM products WHERE availableAtLocation = :location")
     fun getProductInLocation(location:String):Flow<List<Product>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert
     suspend fun insertProduct(product:Product)
 
     @Update
