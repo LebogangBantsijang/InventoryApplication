@@ -11,11 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Inventory">
         <activity android:name=".Views.AddProductActivity" />
-        <activity android:name=".Views.ManageUsersActivity" />
-        <activity android:name=".Views.LoginActivity" />
-        <activity android:name=".Views.CreateAccountActivity"/>
-        <activity android:name=".Views.ManageInventoryActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Views.ManageInventoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
