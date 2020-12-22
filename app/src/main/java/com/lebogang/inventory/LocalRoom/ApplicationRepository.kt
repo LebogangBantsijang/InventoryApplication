@@ -17,14 +17,12 @@ package com.lebogang.inventory.LocalRoom
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.asLiveData
 import com.lebogang.inventory.LocalRoom.DAOs.ProductDao
-import com.lebogang.inventory.LocalRoom.DAOs.UserDao
 import com.lebogang.inventory.LocalRoom.Models.Product
-import com.lebogang.inventory.LocalRoom.Models.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.toList
 
-class ApplicationRepository(private val productDao: ProductDao, private val userDao: UserDao) {
+class ApplicationRepository(private val productDao: ProductDao) {
     /**Product**/
     fun getProductList(): Flow<List<Product>>{
         return productDao.getProductList()
@@ -79,67 +77,4 @@ class ApplicationRepository(private val productDao: ProductDao, private val user
     }
     /**Product**/
 
-    /**User**/
-    fun getUserList(): Flow<List<User>>{
-        return userDao.getUserList()
-    }
-
-    fun getUserByName(name:String):Flow<List<User>>{
-        return userDao.getUserByName(name)
-    }
-
-    fun getUserBySurname(surname:String):Flow<List<User>>{
-        return userDao.getUserBySurname(surname)
-    }
-
-    fun getUserByNameAndSurname(name: String, surname: String):Flow<List<User>>{
-        return userDao.getUserByNameAndSurname(name, surname)
-    }
-
-    fun getUserByEmail(email: String):Flow<List<User>>{
-        return userDao.getUserByEmail(email)
-    }
-
-    fun getUserTypes(isAdmin:Boolean):Flow<List<User>>{
-        return userDao.getUserTypes(isAdmin)
-    }
-
-    suspend fun checkIfUserExists(email: String, password:String):Boolean{
-        val user = userDao.checkIfUserExists(email, password)
-        if (user != null)
-            return true
-        return false
-    }
-
-    suspend fun checkIfUserExists(name:String, surname: String,email:String, password:String):Boolean{
-        val user = userDao.checkIfUserExists(name, surname, email, password)
-        if (user != null)
-            return true
-        return false
-    }
-
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun insertUser(user:User){
-        userDao.insertUser(user)
-    }
-
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun updateUser(user: User){
-        userDao.updateUser(user)
-    }
-
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun deleteUser(user:User){
-        userDao.deleteUser(user)
-    }
-
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun deleteAllUsers(){
-        userDao.deleteAllUsers()
-    }
-    /**User**/
 }

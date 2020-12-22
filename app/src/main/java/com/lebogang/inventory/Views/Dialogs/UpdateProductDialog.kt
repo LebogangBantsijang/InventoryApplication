@@ -18,7 +18,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.lebogang.inventory.LocalRoom.Models.Product
-import com.lebogang.inventory.LocalRoom.Models.User
 import com.lebogang.inventory.R
 import com.lebogang.inventory.Utils.EditTextUtil
 import com.lebogang.inventory.ViewModels.ProductViewModel

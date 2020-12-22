@@ -14,14 +14,16 @@
 
 package com.lebogang.inventory.Views.RecyclerAdapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.lebogang.inventory.LocalRoom.Models.Product
-import com.lebogang.inventory.LocalRoom.Models.User
+import com.lebogang.inventory.R
 import com.lebogang.inventory.Views.Interfaces.ProductClickInterface
 import com.lebogang.inventory.databinding.ItemLayoutProductBinding
 import java.util.*
@@ -33,6 +35,7 @@ class ManageProductsAdapter(val productClickInterface: ProductClickInterface)
     private var list:List<Product> = arrayListOf()
     private val searchList:ArrayList<Product> = arrayListOf()
     private var isUserSearching = false
+    private lateinit var contrext: Context
 
     fun setProductData(products:List<Product>){
         list = products
@@ -66,6 +69,10 @@ class ManageProductsAdapter(val productClickInterface: ProductClickInterface)
             holder.binding.typeTextView.text = product.productType
             holder.binding.customIdTextView.text = product.customProductId
             holder.binding.priceTextView.text = "R"+ product.productPrice
+            Glide.with(holder.itemView)
+                    .load(product.productImageUrl)
+                    .error(R.drawable.ic_trolley)
+                    .into(holder.binding.productImageView)
         }else{
             val product = list[position]
             holder.binding.titleTextView.text = product.productName
@@ -74,6 +81,10 @@ class ManageProductsAdapter(val productClickInterface: ProductClickInterface)
             holder.binding.typeTextView.text = product.productType
             holder.binding.customIdTextView.text = product.customProductId
             holder.binding.priceTextView.text = "R"+ product.productPrice
+            Glide.with(holder.itemView)
+                    .load(product.productImageUrl)
+                    .error(R.drawable.ic_trolley)
+                    .into(holder.binding.productImageView)
         }
     }
 

@@ -23,6 +23,6 @@ class InventoryApplication:Application() {
         ApplicationDatabase.getDatabase(this)
     }
     val localRepository:ApplicationRepository by lazy {
-        ApplicationRepository(localDataBase.productDao(), localDataBase.userDao())
+        ApplicationRepository(localDataBase.productDao())
     }
 }

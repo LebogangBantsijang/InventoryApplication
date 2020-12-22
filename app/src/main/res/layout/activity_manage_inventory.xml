@@ -28,7 +28,6 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:menu="@menu/manage_inventory_menu"
-        app:navigationIcon="@drawable/ic_round_arrow_back_24"
         app:title="Inventory" />
 
     <LinearLayout
@@ -77,5 +76,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="48dp"
         android:layout_marginEnd="16dp"
+        android:background="?colorPrimary"
         app:srcCompat="@drawable/ic_baseline_post_add_24" />
 </FrameLayout>

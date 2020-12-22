@@ -19,15 +19,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.lebogang.inventory.LocalRoom.DAOs.ProductDao
-import com.lebogang.inventory.LocalRoom.DAOs.UserDao
 import com.lebogang.inventory.LocalRoom.Models.Product
-import com.lebogang.inventory.LocalRoom.Models.User
 
-@Database(entities = [Product::class, User::class], version = 1, exportSchema = false)
+@Database(entities = [Product::class], version = 1, exportSchema = false)
 abstract class ApplicationDatabase:RoomDatabase() {
 
     abstract fun productDao():ProductDao
-    abstract fun userDao():UserDao
 
     companion object{
         @Volatile

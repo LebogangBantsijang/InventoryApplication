@@ -40,9 +40,16 @@ class AddProductActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initToolbar()
         initSaveViews()
     }
 
+    private fun initToolbar(){
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+    }
 
     private fun initSaveViews(){
         binding.saveButton.setOnClickListener {
